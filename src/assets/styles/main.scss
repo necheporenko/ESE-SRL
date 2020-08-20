@@ -2181,4 +2181,16 @@ ul {
   }
 }
 
+.c-mp-projects {
+  .slick-track {
+    display: flex !important;
+  }
+  .slick-slide {
+    height: auto;
+    > div {
+      height: 100%;
+    }
+  }
+}
+
 @import './responsive.scss';

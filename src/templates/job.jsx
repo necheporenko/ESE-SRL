@@ -10,6 +10,27 @@ const JobsPage = ({ data }) => {
   const jobData = data.prismic.job;
   const intl = useIntl();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = {
+      jobTitle: RichText.asText(jobData.title),
+      jobDescription: RichText.asText(jobData.description),
+    };
+
+    for (let entry of formData.entries()) {
+      data[entry[0]] = entry[1];
+    }
+
+    fetch('/.netlify/functions/job-form', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+
+    event.target.reset();
+  };
+
   return (
     <Layout title={{ id: 'jobs.seoTitle' }} isPageTitle>
       <section className="ttm-row zero-padding-section clearfix">
@@ -35,8 +56,7 @@ const JobsPage = ({ data }) => {
                 <form
                   id="ttm-quote-form"
                   className="row ttm-quote-form clearfix"
-                  method="post"
-                  action="#"
+                  onSubmit={handleSubmit}
                 >
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
@@ -45,7 +65,7 @@ const JobsPage = ({ data }) => {
                         type="text"
                         className="form-control bg-white border"
                         placeholder={`${intl.formatMessage({ id: 'inputs.firstName' })}*`}
-                        required="required"
+                        required
                       />
                     </div>
                   </div>
@@ -56,7 +76,7 @@ const JobsPage = ({ data }) => {
                         type="text"
                         className="form-control bg-white border"
                         placeholder={`${intl.formatMessage({ id: 'inputs.lastName' })}*`}
-                        required="required"
+                        required
                       />
                     </div>
                   </div>
@@ -64,11 +84,11 @@ const JobsPage = ({ data }) => {
                   <div className="col-sm-12 col-md-6">
                     <div className="form-group">
                       <input
-                        name="address"
+                        name="email"
                         type="email"
-                        placeholder="Email Address*"
                         placeholder={`${intl.formatMessage({ id: 'inputs.emailAddress' })}*`}
                         className="form-control bg-white border"
+                        required
                       />
                     </div>
                   </div>
@@ -85,10 +105,9 @@ const JobsPage = ({ data }) => {
                   <div className="col-sm-12 col-md-12">
                     <div className="form-group">
                       <textarea
-                        name="Massage"
+                        name="message"
                         rows={5}
-                        placeholder={intl.formatMessage({ id: 'inputs.writeMassage' })}
-                        required="required"
+                        placeholder={intl.formatMessage({ id: 'inputs.writeMessage' })}
                         className="form-control bg-white border"
                         defaultValue={''}
                       />
@@ -96,11 +115,16 @@ const JobsPage = ({ data }) => {
                   </div>
                   <div className="col-sm-6 col-md-12">
                     <div className="form-group">
+                      <label htmlFor="resume">
+                        <FormattedMessage id={'inputs.resume'} />*
+                      </label>
                       <input
                         name="resume"
                         type="file"
                         placeholder="Resume"
                         className="form-control bg-white border"
+                        accept="image/*,.pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        required
                       />
                     </div>
                   </div>

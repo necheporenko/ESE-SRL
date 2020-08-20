@@ -77,7 +77,9 @@ const JobContacts = () => {
                 <div className="featured-content">
                   {/* featured-content */}
                   <div className="featured-title">
-                    <h5>Address</h5>
+                    <h5>
+                      <FormattedMessage id={'common.address'} />
+                    </h5>
                     {/* featured-title */}
                   </div>
                   <div className="featured-desc">

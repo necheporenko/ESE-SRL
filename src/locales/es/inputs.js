@@ -3,9 +3,10 @@ const translation = {
   "inputs.phoneNumber": "Número de Teléfono",
   "inputs.emailAddress": "Email",
   "inputs.subject": "Asunto",
-  "inputs.writeMassage": "Escriba su Mensaje...",
+  "inputs.writeMessage": "Escriba su Mensaje...",
   "inputs.firstName": "Nombre",
   "inputs.lastName": "Apellido",
+  "inputs.resume": "Currículum",
 }
 
 export default translation;

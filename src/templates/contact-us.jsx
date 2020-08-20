@@ -4,8 +4,26 @@ import { useIntl, FormattedMessage } from 'react-intl';
 import Layout from '../components/Layout';
 import GoogleMap from '../components/GoogleMap';
 
-const ContactUsPage = ({}) => {
+const ContactUsPage = () => {
   const intl = useIntl();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = {};
+
+    for (let entry of formData.entries()) {
+      data[entry[0]] = entry[1];
+    }
+
+    fetch('/.netlify/functions/contact-form', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+
+    event.target.reset();
+  };
 
   return (
     <Layout title={{ id: 'contactUs.seoTitle' }} isPageTitle>
@@ -226,13 +244,12 @@ const ContactUsPage = ({}) => {
                 <form
                   id="ttm-quote-form"
                   className="row ttm-quote-form clearfix"
-                  method="post"
-                  action="#"
+                  onSubmit={handleSubmit}
                 >
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
                       <input
-                        name="name"
+                        name="fullName"
                         type="text"
                         className="form-control bg-white"
                         placeholder={`${intl.formatMessage({ id: 'inputs.fullName' })}*`}
@@ -254,7 +271,7 @@ const ContactUsPage = ({}) => {
                   <div className="col-sm-6 col-md-6">
                     <div className="form-group">
                       <input
-                        name="address"
+                        name="email"
                         type="text"
                         placeholder={`${intl.formatMessage({ id: 'inputs.emailAddress' })}*`}
                         required="required"
@@ -268,7 +285,6 @@ const ContactUsPage = ({}) => {
                         name="subject"
                         type="text"
                         placeholder={intl.formatMessage({ id: 'inputs.subject' })}
-                        required="required"
                         className="form-control bg-white"
                       />
                     </div>
@@ -276,10 +292,9 @@ const ContactUsPage = ({}) => {
                   <div className="col-sm-12 col-md-12">
                     <div className="form-group">
                       <textarea
-                        name="Massage"
+                        name="message"
                         rows={5}
-                        placeholder={intl.formatMessage({ id: 'inputs.writeMassage' })}
-                        required="required"
+                        placeholder={intl.formatMessage({ id: 'inputs.writeMessage' })}
                         className="form-control bg-white"
                         defaultValue={''}
                       />

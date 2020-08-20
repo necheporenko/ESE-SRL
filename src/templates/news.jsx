@@ -54,6 +54,7 @@ const NewsPage = ({ pageContext }) => {
                                   month: 'long',
                                   day: 'numeric',
                                   year: 'numeric',
+                                  timeZone: 'UTC',
                                 })}
                               </time>
                             </span>

@@ -46,6 +46,7 @@ var slick_slider = {
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
+        speed: 2000,
       },
     },
     {
@@ -53,6 +54,7 @@ var slick_slider = {
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
+        speed: 2000,
       },
     },
   ],
@@ -98,7 +100,7 @@ const IndexPage = ({ data }) => {
 
                         <p>
                           <Link
-                            to="/#about-us"
+                            to="/about-us/"
                             className="ttm-btn ttm-btn-size-md ttm-bgcolor-skincolor ttm-textcolor-white mr-3"
                           >
                             <FormattedMessage id={'buttons.readMore'} />
@@ -280,10 +282,12 @@ const IndexPage = ({ data }) => {
                           <time className="entry-date" dateTime={node.date}>
                             {Date(node.date).toLocaleDateString('en-GB', {
                               day: 'numeric',
+                              timeZone: 'UTC',
                             })}
                             <span className="entry-month entry-year">
                               {Date(node.date).toLocaleDateString('en-GB', {
                                 month: 'short',
+                                timeZone: 'UTC',
                               })}
                             </span>
                           </time>
@@ -338,7 +342,7 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
       </section>
-      <section className="ttm-row mt-10 zero-padding-section clearfix">
+      <section className="ttm-row mt-10 zero-padding-section clearfix c-mp-projects">
         <div className="container-fluid p-0">
           <Slider
             className="row slick_slider ttm-boxes-spacing-10px"
@@ -346,7 +350,7 @@ const IndexPage = ({ data }) => {
             slidesToShow={5}
           >
             {prismicAllProjectsData.map(({ node }, index) => (
-              <div className="ttm-box-col-wrapper" key={index}>
+              <div className="ttm-box-col-wrapper h-100" key={index}>
                 {/* featured-imagebox-services */}
                 <div className="featured-imagebox featured-imagebox-services style1">
                   <div className="featured-thumbnail">
@@ -387,7 +391,7 @@ const IndexPage = ({ data }) => {
 export const query = graphql`
   query($lang: String!) {
     prismic {
-      allArticles(first: 10, lang: $lang) {
+      allArticles(first: 10, lang: $lang, sortBy: date_DESC) {
         edges {
           node {
             _meta {

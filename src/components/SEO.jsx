@@ -17,6 +17,8 @@ const SEO = ({ title }) => {
       <title>{seoTitle}</title>
       <meta name="title" content={seoTitle} />
       <meta name="description" content={seoDescription} />
+
+      <link rel="preconnect" href="https://static.cdn.prismic.io/prismic.min.js" />
     </Helmet>
   );
 };

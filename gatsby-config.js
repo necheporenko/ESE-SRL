@@ -7,13 +7,13 @@ module.exports = {
     siteUrl: config.siteUrl,
   },
   plugins: [
+    `gatsby-plugin-preact`,
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-lodash',
     'gatsby-plugin-sass',
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
-        printRejected: true,
         whitelist: ['header', 'mobilemenu', 'nav-icon1'],
         whitelistPatternsChildren: [
           /^ti-/,
@@ -72,6 +72,7 @@ module.exports = {
         previews: false, // optional, default: true
       },
     },
+    `gatsby-plugin-netlify`,
     // {
     //   resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
     //   options: {},

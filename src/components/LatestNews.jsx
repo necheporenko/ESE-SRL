@@ -16,7 +16,7 @@ const LatestNews = ({ intl: { locale } }) => {
       query={graphql`
         query {
           prismic {
-            allArticles(first: 10) {
+            allArticles(first: 10, sortBy: date_DESC) {
               edges {
                 node {
                   title
@@ -72,6 +72,7 @@ const LatestNews = ({ intl: { locale } }) => {
                         month: 'short',
                         day: 'numeric',
                         year: 'numeric',
+                        timeZone: 'UTC',
                       })}
                     </span>
                   )}

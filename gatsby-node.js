@@ -67,7 +67,7 @@ exports.createPages = async ({ actions, graphql }) => {
       `
       query($after: String) {
           prismic {
-            allArticles(after: $after) {
+            allArticles(after: $after, sortBy: date_DESC) {
               pageInfo {
                 hasNextPage
                 endCursor

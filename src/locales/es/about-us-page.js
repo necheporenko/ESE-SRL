@@ -90,6 +90,7 @@ const translation = {
   "about.tab1.timeline4": "Se consolida un equilibrio tanto administrativo como financiero, que nos ha permitido encarar diversos proyectos de expansión de nuestras unidades de negocios.",
   "about.tab1.timeline5": "Se amplían nuestros horizontes, desarrollando proyectos a nivel internacional, en Argentina.",
   "about.tab1.timeline6": "Se realiza la implantación de nuestro Sistema Integrado de Gestión (Calidad: ISO 9001, Seguridad y Salud Ocupacional: OHSAS 18001 y Medio Ambiente: ISO 14001).",
+  "about.tab1.timeline6.present": 'presente',
   "about.tab2.block1.title": "Misión",
   "about.tab2.block1.desc": "Desarrollamos soluciones electromecánicas integrales, alineados a los objetivos de nuestros clientes, a través de nuestra experiencia, el compromiso y la competencia de nuestros colaboradores, en cumplimiento con estándares de calidad, seguridad industrial, salud ocupacional y medio ambiente, generando así valor en nuestro entorno.",
   "about.tab2.block2.title": "Visión",

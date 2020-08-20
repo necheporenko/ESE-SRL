@@ -48,6 +48,7 @@ const NewsPage = ({ data, location: { href } }) => {
                                 month: 'long',
                                 day: 'numeric',
                                 year: 'numeric',
+                                timeZone: 'UTC',
                               })}
                             </time>
                           </span>
